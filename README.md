@@ -42,6 +42,7 @@ The installed instructions direct the agent to reuse matching tools and capture 
 
 ## Learn more
 
+- [Support](SUPPORT.md): getting help, reporting bugs, and requesting features.
 - [Frequently asked questions](FAQ.md): included tools, automatic reuse, compatibility, updates, and removal.
 - [Results and how it works](HOW_IT_WORKS.md): measured savings, their limits, and the workflow approach.
 - [Developer guide](DEVELOPER_GUIDE.md): commands, architecture, examples, and benchmark details.
