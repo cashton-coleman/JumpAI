@@ -14,15 +14,15 @@ The agent makes the decisions. Jump AI handles the repeatable steps.
 
 ## Install for Codex
 
-This repository is private. On macOS or Linux, use **GitHub CLI (`gh`), Git, and Python 3.11+ with SQLite FTS5**. Sign in with `gh auth login` using an account with repository access, then run:
+On macOS or Linux, with **Git, curl, and Python 3.11+ with SQLite FTS5**:
 
 ```sh
-gh repo clone cashton-coleman/JumpAI "$HOME/JumpAI" && "$HOME/JumpAI/install.sh"
+curl -fsSL https://raw.githubusercontent.com/cashton-coleman/JumpAI/main/install-from-github.sh | sh
 ```
 
 This installs the skill, reusable capabilities, and working standards using a checkout in `~/JumpAI`. Keep that folder in place, then **start a new Codex chat**. A C++17 compiler is optional.
 
-Already have a complete checkout or extracted release? Run `./install.sh` from its directory. Anonymous `curl` installation is unavailable while the repository is private. For custom paths and prerequisites, see the [installation guide](skills/jumpai/references/installation.md).
+Already have a complete checkout or extracted release? Run `./install.sh` from its directory. For custom paths and prerequisites, see the [installation guide](skills/jumpai/references/installation.md).
 
 ## Using Jump AI
 

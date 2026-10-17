@@ -1,12 +1,17 @@
 # Installation and persistence
 
-The repository is private. Sign in with `gh auth login` using an account with access, then download the complete checkout and run the shell installer:
+Download the complete Jump AI checkout and run the shell installer:
 
 ```bash
-gh repo clone cashton-coleman/JumpAI "$HOME/JumpAI" && "$HOME/JumpAI/install.sh"
+curl -fsSL https://raw.githubusercontent.com/cashton-coleman/JumpAI/main/install-from-github.sh | sh
 ```
 
-This requires GitHub CLI and Git and clones into `~/JumpAI`; it refuses to overwrite an existing destination. To choose another permanent directory, change both paths in the command. The anonymous `curl` bootstrap is available in the source for future public distribution, but cannot download this private repository without authentication.
+The bootstrap requires Git and clones into `~/JumpAI`; it refuses to overwrite an existing destination. To choose another permanent directory:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/cashton-coleman/JumpAI/main/install-from-github.sh \
+  | JUMPAI_INSTALL_DIR="$HOME/tools/JumpAI" sh
+```
 
 Alternatively, extract a versioned release archive into a permanent directory and run `./install.sh`. From the installed checkout, `./install.sh plan`, `./install.sh doctor`, and `./install.sh uninstall` manage the same lifecycle. The launcher requires Python 3.11+ with SQLite FTS5; it locates a suitable interpreter without installing packages. Set `JUMPAI_PYTHON=/absolute/python` only to select a specific interpreter. It prints compact status; the underlying Python CLI remains available for integrations needing full JSON guidance.
 

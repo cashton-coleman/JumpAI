@@ -30,7 +30,7 @@ A saved recipe remembers how to run the work, not its previous answer. Each new 
 
 Jump AI itself requires no separate model API account or third-party Python packages. Your coding agent still uses its normal account and permissions.
 
-This private repository requires an authorized GitHub account. The documented install command uses GitHub CLI (`gh`), Git, and Python 3.11 or newer with SQLite FTS5 support. The installer checks prerequisites but does not install Python or a compiler. Use `JUMPAI_PYTHON=/absolute/path/to/python3` with the installer if you need to select a particular interpreter.
+The documented install command uses Git, curl, and Python 3.11 or newer with SQLite FTS5 support. The installer checks prerequisites but does not install Python or a compiler. Use `JUMPAI_PYTHON=/absolute/path/to/python3` with the installer if you need to select a particular interpreter.
 
 ## Do I need a C++ compiler?
 
