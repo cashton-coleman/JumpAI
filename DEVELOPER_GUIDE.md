@@ -380,6 +380,8 @@ Run records measure program execution, not total model token usage. Token totals
 
 ### Maintainer release check
 
+The [CI workflow](.github/workflows/ci.yml) runs seven focused checks on Ubuntu with Python 3.11 for pushes to `main`, pull requests, and manual runs. It covers clean-package installation/removal, workflow replay, persistent and Unicode-aware lookup, input/artifact validation, and checkpoint continuation. The README status badge reflects pushes to `main`; it does not certify other platforms or the full test suite.
+
 For a focused clean-package check and release build:
 
 ```sh

@@ -2,6 +2,10 @@
 
 # Jump AI
 
+[![CI](https://github.com/cashton-coleman/JumpAI/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/cashton-coleman/JumpAI/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/cashton-coleman/JumpAI?label=release)](https://github.com/cashton-coleman/JumpAI/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 **Give your coding agent a memory for useful tools—not just conversations.**
 
 AI coding agents often write the same little programs over and over: inspect files, summarize tests, check changes, assemble reports. Jump AI lets an agent save that work as reusable programs, combine them into workflows, and run them again with a simple recipe.

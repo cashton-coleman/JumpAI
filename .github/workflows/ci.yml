@@ -1,0 +1,46 @@
+# Check release installation and a small set of core reuse guarantees.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Tests need source access only; cancel superseded runs on the same branch.
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: Installation and core checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      # Pin official actions and exercise the minimum supported Python version.
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.11'
+
+      # Standard-library tests cover packaging, reuse, validation, and checkpoints.
+      - name: Run seven focused checks
+        env:
+          PYTHONPATH: tests
+        run: |
+          python -m unittest -v \
+            test_release.ReleaseTests.test_clean_package_install_recipe_and_uninstall \
+            test_jumpai.CatalogTests.test_cache_hit_skips_search_and_survives_reopen \
+            test_jumpai.CatalogTests.test_cache_matches_unicode_caseless_queries \
+            test_jumpai.CatalogTests.test_tampered_snapshot_is_rejected \
+            test_jumpai.CatalogTests.test_invalid_input_does_not_start_program \
+            test_recipes.RecipeTests.test_saved_command_replays_without_discovery_or_contract_reads \
+            test_workflows.WorkflowTests.test_restart_resume_keeps_prior_work_and_returns_compact_summary

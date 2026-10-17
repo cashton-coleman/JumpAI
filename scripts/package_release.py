@@ -13,7 +13,8 @@ import tomllib
 # Include runtime dependencies and source fixtures, never personal catalogs or telemetry.
 ROOT = Path(__file__).resolve().parents[1]
 TOP_FILES = ('README.md', 'SUPPORT.md', 'FAQ.md', 'HOW_IT_WORKS.md', 'DEVELOPER_GUIDE.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'pyproject.toml',
-             'install.sh', 'install-from-github.sh', '.gitignore', 'AGENTS.md', 'AGENTS.override.md', 'CLAUDE.md')
+             'install.sh', 'install-from-github.sh', '.gitignore', 'AGENTS.md', 'AGENTS.override.md', 'CLAUDE.md',
+             '.github/workflows/ci.yml')
 SOURCE_DIRS = ('jumpai', 'skills', 'programs', 'workflows', 'examples', 'benchmarks', 'tests', 'scripts')
 EXCLUDED = {'__pycache__', '.jumpai', '.git', '.venv', 'results', 'agent-results'}
 SOURCE_SUFFIXES = {'.py', '.cpp', '.hpp', '.json', '.md', '.yaml', '.yml', '.txt', '.toml', '.sh', '.MIT', '.png'}
