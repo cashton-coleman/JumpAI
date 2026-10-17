@@ -24,6 +24,10 @@ This installs the skill, reusable capabilities, and working standards using a ch
 
 Already have a complete checkout or extracted release? Run `./install.sh` from its directory. For custom paths and prerequisites, see the [installation guide](skills/jumpai/references/installation.md).
 
+### Windows
+
+Use **WSL2** for Jump AI, with the Codex agent running in the same Linux environment. Follow the [Windows installation steps](skills/jumpai/references/installation.md#windows-with-wsl2) for setup and the install command. Native PowerShell installation of Jump AI is not currently supported.
+
 ## Using Jump AI
 
 **Ask your agent for the work you want done.** For example:

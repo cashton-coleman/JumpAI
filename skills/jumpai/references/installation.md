@@ -39,6 +39,49 @@ The installer preserves unrelated instruction text, refuses to overwrite an unre
 
 Uninstall removes the managed skill link and instruction block and retains the catalog and unrelated instructions. A locally edited managed block or replaced skill is reported instead of silently deleted. If the checkout was moved, reinstall from its new location after removing/reconciling the old link; do not leave dangling skill links.
 
+## Windows with WSL2
+
+Codex is available on Windows. For Jump AI, use its Linux installer inside **WSL2**, with the agent running there too. OpenAI documents [WSL2 setup](https://learn.chatgpt.com/docs/windows/wsl) and [the desktop app's agent environment](https://learn.chatgpt.com/docs/windows/windows-app#windows-subsystem-for-linux-wsl).
+
+### 1. Set up WSL2 and Codex
+
+If WSL is not installed, open PowerShell as Administrator and run:
+
+```powershell
+wsl --install
+```
+
+Complete the Linux distribution's setup and restart Windows if prompted. Check that the distribution uses version 2 with `wsl --list --verbose`. WSL1 is not supported by current Codex. Open the Ubuntu/WSL terminal for the following steps.
+
+Use the Codex CLI inside WSL2, or select **WSL** as the desktop app's **agent environment** in Settings and restart the app. The terminal setting is separate; selecting a WSL terminal alone does not move the agent. For CLI installation, follow [OpenAI's WSL instructions](https://learn.chatgpt.com/docs/windows/wsl#use-codex-cli-with-wsl).
+
+### 2. Install Jump AI inside WSL
+
+In Ubuntu, install prerequisites if needed:
+
+```sh
+sudo apt update
+sudo apt install -y git curl python3
+```
+
+Python must be 3.11+ with SQLite FTS5; the Jump AI installer checks both. A Linux C++17 compiler is optional (Ubuntu's `g++` package provides one); a Windows compiler installation does not supply WSL's toolchain.
+
+Run the installer from the WSL environment used by your agent:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/cashton-coleman/JumpAI/main/install-from-github.sh | sh
+cd "$HOME/JumpAI"
+./install.sh doctor
+```
+
+Keep Jump AI and task repositories under your Linux home directory, such as `~/JumpAI` and `~/code/my-project`. Start a fresh Codex session after installation.
+
+### Environment and support notes
+
+Installation creates the skill under the WSL user's `~/.agents/skills` and uses the active `CODEX_HOME` for startup instructions, defaulting to `~/.codex`. Windows-native and WSL CLI configuration are separate by default. If you customize `CODEX_HOME`, use the same setting for installation and the agent; use the paths reported by `doctor` to check the setup.
+
+This documents the Linux installation route on Windows, not a native PowerShell installer. Jump AI uses symlinks and Unix shell quoting in generated command cards; native Windows/MSVC code paths alone do not establish complete native compatibility. The instructions were reviewed against official Codex documentation and the implementation; no Windows/WSL2 execution test was performed here.
+
 ## Other agent hosts
 
 Use the same lifecycle with that host's real discovery directory and startup instruction file:

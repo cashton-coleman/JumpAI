@@ -50,6 +50,12 @@ Codex is the primary installation target. Other coding tools can use the runtime
 
 Python and C++ are supported today. GPU kernels and an MCP server are not implemented. Install separately on remote machines or containers; local paths and toolchains do not transfer automatically.
 
+## Can I install Jump AI for Codex on Windows?
+
+Yes, through WSL2, using Jump AI's Linux installer. Codex supports both native Windows and WSL2, but Jump AI's shell installer and generated commands currently target Unix shells. Use the Codex CLI inside WSL2, or configure the desktop app's **agent environment** to use WSL and restart it. Changing only the terminal shell is not enough. See [OpenAI's Windows guidance](https://learn.chatgpt.com/docs/windows/windows-app#windows-subsystem-for-linux-wsl).
+
+Follow the [Windows installation steps](skills/jumpai/references/installation.md#windows-with-wsl2). Native PowerShell installation is not supported by this release. These instructions were reviewed against the code and official documentation; Jump AI has not been tested on a Windows/WSL2 machine here.
+
 ## What permissions does it use, and what does it save?
 
 Jump AI runs locally with the agent's existing permissions. It does not bypass host restrictions or make unfamiliar code safe to execute.
