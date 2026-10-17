@@ -44,6 +44,8 @@ Use **WSL2** for Jump AI, with the Codex agent running in the same Linux environ
 
 The installed instructions direct the agent to reuse matching tools and capture substantial reusable work without a separate reminder. The agent handles discovery, saving, and verification. [The FAQ explains how that automation works](FAQ.md#does-jump-ai-learn-automatically).
 
+Want actual usage figures? Ask for a [compact usage footer](FAQ.md#can-i-see-time-and-token-usage): it reports the previous completed turn and running averages for measured Jump AI-assisted turns.
+
 ## Learn more
 
 - [Support](SUPPORT.md): getting help, reporting bugs, and requesting features.

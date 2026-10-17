@@ -22,6 +22,11 @@ def parser():
     location.add_argument("--library", help="read-only installed library.json; keep mutable state in the workspace")
     p.add_argument("--workspace", default=str(Path.cwd()), help="task workspace; defaults to the current directory")
     sub = p.add_subparsers(dest="command", required=True)
+    usage = sub.add_parser('usage', help='read previous-turn usage and Jump AI turn averages from local Codex logs')
+    usage.add_argument('--session', help='explicit Codex rollout JSONL file')
+    usage.add_argument('--thread-id', help='thread UUID; defaults to CODEX_THREAD_ID')
+    usage.add_argument('--sessions-dir', help='Codex sessions directory; defaults to CODEX_HOME/sessions')
+    usage.add_argument('--footer', action='store_true', help='print a compact chat footer instead of JSON')
     sub.add_parser("init")
     sub.add_parser("stats")
     sub.add_parser("publish-library", help="publish definitions for sandboxed workspace runtimes")
@@ -112,6 +117,12 @@ def main(argv=None):
     for interruption. Commands may execute programs with caller permissions.
     """
     args = parser().parse_args(argv)
+    # Usage inspection requires neither a writable catalog nor a program execution.
+    if args.command == 'usage':
+        from .usage import footer, report
+        result = report(args.session, args.thread_id, args.sessions_dir)
+        print(footer(result) if args.footer else canonical(result))
+        return 0 if 'unavailable' not in result else 2
     catalog = None
     try:
         from .workspace import open_workspace, handoff, publish
@@ -242,6 +253,9 @@ def main(argv=None):
                         result["recipe_warning"] = str(exc)
                 else:
                     result["recipe_warning"] = "Workflow paused; use --save-recipe on the completing resume"
+        # Mark actual successful execution/checkpoint returns, excluding discovery and telemetry.
+        if command in {'run', 'jump', 'resume', 'verify'} or (command == 'handoff' and args.prepare):
+            result['jumpai_execution'] = True
         if args.library:
             result["catalog_home"] = str(catalog.home)
         print(canonical(result))

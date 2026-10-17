@@ -87,6 +87,10 @@ cd "$HOME/JumpAI"
 
 Start a new Codex chat after installation or updates; restart the app if skill discovery has not refreshed. `doctor` checks the skill link, runtime, startup guidance, and bundled capability availability. More troubleshooting is in the [developer guide](DEVELOPER_GUIDE.md#updates-removal-and-troubleshooting).
 
+## Can I see time and token usage?
+
+Yes. Ask your agent: “Add a compact usage footer to each reply.” In local Codex chats, it can report the previous completed turn's elapsed time, input tokens, cached input, output tokens, and total tokens, plus running averages for measured turns with Jump AI execution receipts in that chat. The active turn is not yet complete. Missing telemetry is reported as unavailable; these are whole-turn usage figures, not measured savings. [Accounting details](DEVELOPER_GUIDE.md#usage-footers).
+
 ## How do I update Jump AI?
 
 For a Git installation:

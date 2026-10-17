@@ -32,12 +32,13 @@ jobs:
           python-version: '3.11'
 
       # Standard-library tests cover packaging, reuse, validation, and checkpoints.
-      - name: Run seven focused checks
+      - name: Run focused checks
         env:
           PYTHONPATH: tests
         run: |
           python -m unittest -v \
             test_release.ReleaseTests.test_clean_package_install_recipe_and_uninstall \
+            test_usage \
             test_jumpai.CatalogTests.test_cache_hit_skips_search_and_survives_reopen \
             test_jumpai.CatalogTests.test_cache_matches_unicode_caseless_queries \
             test_jumpai.CatalogTests.test_tampered_snapshot_is_rejected \

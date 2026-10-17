@@ -18,6 +18,22 @@ Run from your project or supply `--workspace /absolute/project` before the subco
 
 Jump to [workflows](#conditional-workflows-and-checkpoints), [C++](#c-execution-and-binary-caching), [authoring](#build-your-own-capabilities), [commands](#command-reference), or [benchmark evidence](#measured-workflow-comparison).
 
+## Usage footers
+
+When the user requests them, the installed guidance directs the agent to append one compact footer per final reply:
+
+```sh
+jumpai usage --footer
+```
+
+The reader uses `CODEX_THREAD_ID` and local JSONL logs under `CODEX_HOME/sessions` (normally `~/.codex/sessions`). Supply `--session /absolute/rollout.jsonl` for a known log, or `--thread-id UUID --sessions-dir /absolute/sessions`. Omit `--footer` for JSON. It reads without opening a catalog, executing programs, exporting conversation text, or writing telemetry. It is currently a local Codex log adapter; other hosts or inaccessible logs return unavailable rather than estimated usage.
+
+Elapsed time runs from task start to completion, including tool waits. Tokens are differences between cumulative counters before and after the completed turn. Cached input is already included in input; total is input plus output, with reasoning already included in output. The current turn is excluded because its final counters are not available until completion.
+
+Running arithmetic means cover completed turns in this thread with both valid counters and returned Jump AI execution receipts. Current CLI execution results carry `jumpai_execution: true`; older program receipts are also recognized. Older workflow-only receipts and failed executions without a receipt cannot reliably be classified. Merely reading the skill, searching the catalog, or running `usage` does not qualify. Child-agent usage is not aggregated. These figures describe whole-turn usage, not time spent exclusively inside Jump AI or savings against a control.
+
+Missing baselines, malformed counters, or counter resets yield unavailable token data and are excluded from averages, with an unmeasured count. Interrupted turns and incomplete final JSONL records are excluded. Corrupt complete records produce an unavailable result. Run the reader once per turn alongside another needed command where practical; avoid spending extra exchanges repeatedly checking it.
+
 ## Programs, workflows, and recipes
 
 | Term | Meaning | Example |
@@ -380,7 +396,7 @@ Run records measure program execution, not total model token usage. Token totals
 
 ### Maintainer release check
 
-The [CI workflow](.github/workflows/ci.yml) runs seven focused checks on Ubuntu with Python 3.11 for pushes to `main`, pull requests, and manual runs. It covers clean-package installation/removal, workflow replay, persistent and Unicode-aware lookup, input/artifact validation, and checkpoint continuation. The README status badge reflects pushes to `main`; it does not certify other platforms or the full test suite.
+The [CI workflow](.github/workflows/ci.yml) runs focused checks on Ubuntu with Python 3.11 for pushes to `main`, pull requests, and manual runs. It covers clean-package installation/removal, workflow replay, persistent and Unicode-aware lookup, input/artifact validation, checkpoint continuation, and usage accounting. The README status badge reflects pushes to `main`; it does not certify other platforms or the full test suite.
 
 For a focused clean-package check and release build:
 

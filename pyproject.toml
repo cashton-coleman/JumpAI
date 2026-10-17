@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jumpai"
-version = "0.1.1"
+version = "0.1.2"
 description = "A local, reusable program catalog for coding agents"
 license = {file = "LICENSE"}
 requires-python = ">=3.11"

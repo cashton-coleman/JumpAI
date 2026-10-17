@@ -97,13 +97,21 @@ class ReleaseTests(unittest.TestCase):
                 '    def test_normalize(self):\n        """Whitespace should be removed."""\n'
                 '        self.assertEqual(normalize(" a "), "a")\n')
             launcher = Path(installed['skill']) / 'scripts/jumpai.py'
+            # Verify the release ships the usage reader without depending on host telemetry.
+            empty_session = root / 'empty-session.jsonl'
+            empty_session.write_text('')
+            usage = run([sys.executable, str(launcher), 'usage', '--session', str(empty_session)])
+            self.assertIsNone(usage['previous'])
+            self.assertIsNone(usage['jumpai_average'])
             request = {'root': str(workspace), 'source_path': 'sample.py', 'tests': ['test_sample.Check.test_normalize']}
             receipt = run([sys.executable, str(launcher), '--library', str(root / 'catalog/library.json'),
                            '--workspace', str(workspace), 'run', '--target', 'repo.regression-triage@1.4.0',
                            '--resumable', '--input', json.dumps(request), '--save-recipe', 'release-smoke'], workspace)
             self.assertEqual(receipt['status'], 'completed')
+            self.assertTrue(receipt['jumpai_execution'])
             replay = run([*shlex.split(receipt['recipe']['command']), '--resumable'], workspace)
             self.assertEqual(replay['status'], 'completed')
+            self.assertTrue(replay['jumpai_execution'])
 
             # Uninstall removes managed discovery and guidance, preserving user data.
             self.assertTrue(run([shell, 'uninstall', *flags])['uninstalled'])
