@@ -1,0 +1,48 @@
+[
+  {
+    "input": {
+      "output_dir": "/private/var/folders/w5/ycmp86ds3nxg867ljqj4typm0000gn/T/jumpai-adoption-audit-fixture-oiqndjsg/tree",
+      "sessions_dir": "/private/var/folders/w5/ycmp86ds3nxg867ljqj4typm0000gn/T/jumpai-adoption-audit-fixture-oiqndjsg/logs",
+      "parent_thread_id": "controller",
+      "root_agent_paths": [
+        "/root/auto"
+      ]
+    },
+    "output": {
+      "ready": true,
+      "agents": 2,
+      "evidence": "/private/var/folders/w5/ycmp86ds3nxg867ljqj4typm0000gn/T/jumpai-adoption-audit-fixture-oiqndjsg/tree/adoption-evidence.json",
+      "totals_including_descendants": {
+        "/root/auto": {
+          "agents": 2,
+          "total_tokens": 16,
+          "model_exchanges": 2
+        }
+      },
+      "note": "Invocation candidates require execution-trace review; absence of instruction text in logs does not prove absence from model context."
+    }
+  },
+  {
+    "input": {
+      "output_dir": "/private/var/folders/w5/ycmp86ds3nxg867ljqj4typm0000gn/T/jumpai-adoption-audit-fixture-oiqndjsg/empty",
+      "sessions_dir": "/private/var/folders/w5/ycmp86ds3nxg867ljqj4typm0000gn/T/jumpai-adoption-audit-fixture-oiqndjsg/empty",
+      "parent_thread_id": "controller",
+      "root_agent_paths": [
+        "/root/auto"
+      ]
+    },
+    "output": {
+      "ready": false,
+      "agents": 0,
+      "evidence": "/private/var/folders/w5/ycmp86ds3nxg867ljqj4typm0000gn/T/jumpai-adoption-audit-fixture-oiqndjsg/empty/adoption-evidence.json",
+      "totals_including_descendants": {
+        "/root/auto": {
+          "agents": 0,
+          "total_tokens": 0,
+          "model_exchanges": 0
+        }
+      },
+      "note": "Invocation candidates require execution-trace review; absence of instruction text in logs does not prove absence from model context."
+    }
+  }
+]

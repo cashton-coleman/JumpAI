@@ -1,0 +1,89 @@
+{
+  "name": "summarize.json",
+  "version": "1.0.1",
+  "kind": "workflow",
+  "purpose": "Load a JSON file of records and summarize a numeric field",
+  "use_cases": [
+    "Summarize benchmark measurements from a JSON file"
+  ],
+  "tags": [
+    "json",
+    "summary",
+    "benchmark"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "string",
+        "minLength": 1
+      },
+      "field": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "path",
+      "field"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "count": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "min": {
+        "type": "number"
+      },
+      "max": {
+        "type": "number"
+      },
+      "mean": {
+        "type": "number"
+      },
+      "median": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "count",
+      "min",
+      "max",
+      "mean",
+      "median"
+    ],
+    "additionalProperties": false
+  },
+  "steps": [
+    {
+      "name": "load",
+      "target": "json.load@1.0.1",
+      "bindings": {
+        "path": {
+          "input": "/path"
+        }
+      }
+    },
+    {
+      "name": "summarize",
+      "target": "numbers.summary@1.0.1",
+      "bindings": {
+        "records": {
+          "step": "load",
+          "pointer": "/records"
+        },
+        "field": {
+          "input": "/field"
+        }
+      }
+    }
+  ],
+  "output": {
+    "step": "summarize",
+    "pointer": ""
+  }
+}

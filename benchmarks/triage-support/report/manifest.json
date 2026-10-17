@@ -1,0 +1,35 @@
+{
+  "name": "triage.report",
+  "version": "1.0.1",
+  "kind": "program",
+  "runtime": "python",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py"
+  ],
+  "purpose": "Combine before and after test outcomes and patch receipt into a compact report",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "initial": {
+        "type": "object"
+      },
+      "final": {
+        "type": "object"
+      },
+      "patch": {
+        "type": "object"
+      }
+    },
+    "required": [
+      "initial",
+      "final",
+      "patch"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object"
+  },
+  "timeout_seconds": 40
+}

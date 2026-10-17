@@ -1,0 +1,52 @@
+[
+  {
+    "input": {
+      "output_dir": "/private/tmp/jumpai-agent-audit-fixture/output",
+      "conditions": [
+        "sample"
+      ],
+      "reference_condition": "sample",
+      "labels": {
+        "sample": "Synthetic fixture"
+      },
+      "title": "Synthetic fixture",
+      "context": "Evaluator fixture only.",
+      "notes": [
+        "Not a measured agent run."
+      ]
+    },
+    "output": {
+      "ready": true,
+      "all_passed": true,
+      "report": "/private/tmp/jumpai-agent-audit-fixture/output/report.md",
+      "comparisons": {},
+      "summary": "/private/tmp/jumpai-agent-audit-fixture/output/summary.json",
+      "source_read_reviewed": 0
+    }
+  },
+  {
+    "input": {
+      "output_dir": "/private/tmp/jumpai-agent-audit-fixture/failed-source-audit",
+      "conditions": [
+        "sample"
+      ],
+      "reference_condition": "sample",
+      "labels": {
+        "sample": "Synthetic fixture"
+      },
+      "title": "Synthetic fixture",
+      "context": "Evaluator fixture only.",
+      "notes": [
+        "Not a measured agent run."
+      ]
+    },
+    "output": {
+      "ready": true,
+      "all_passed": false,
+      "report": "/private/tmp/jumpai-agent-audit-fixture/failed-source-audit/report.md",
+      "comparisons": {},
+      "summary": "/private/tmp/jumpai-agent-audit-fixture/failed-source-audit/summary.json",
+      "source_read_reviewed": 0
+    }
+  }
+]

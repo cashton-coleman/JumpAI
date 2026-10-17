@@ -1,0 +1,8 @@
+{
+  "name": "bench.review-native-workflow", "version": "1.0.1", "runtime": "python",
+  "entrypoint": "review_native_workflow.py", "files": ["review_native_workflow.py"],
+  "purpose": "Compare paired native-workflow and ordinary agent reports with actual telemetry and C++ runtime evidence",
+  "input_schema": {"type": "object", "required": ["output_dir"], "additionalProperties": false,
+    "properties": {"output_dir": {"type": "string"}}},
+  "output_schema": {"type": "object"}
+}

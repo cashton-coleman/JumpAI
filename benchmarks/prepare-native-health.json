@@ -1,0 +1,19 @@
+{
+  "name": "bench.prepare-native-health",
+  "version": "1.0.0",
+  "purpose": "Prepare isolated, verified Python and warm-native repository-health agent comparisons",
+  "runtime": "python",
+  "entrypoint": "prepare_native_health.py",
+  "files": ["prepare_native_health.py"],
+  "timeout_seconds": 90,
+  "input_schema": {
+    "type": "object",
+    "required": ["root", "library", "sessions_dir", "parent_thread_id"],
+    "properties": {
+      "root": {"type": "string"}, "library": {"type": "string"},
+      "sessions_dir": {"type": "string"}, "parent_thread_id": {"type": "string"}
+    },
+    "additionalProperties": false
+  },
+  "output_schema": {"type": "object"}
+}

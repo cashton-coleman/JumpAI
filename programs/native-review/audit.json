@@ -1,0 +1,9 @@
+{
+  "name": "repo.source-audit", "version": "1.0.0", "runtime": "cpp",
+  "purpose": "Find literal TODO/FIXME markers and trailing whitespace in explicit repository files",
+  "entrypoint": "main.cpp", "python_fallback": "main.py", "arguments": ["audit"],
+  "files": ["main.cpp", "main.py", "json.hpp", "LICENSE.MIT"],
+  "input_schema": {"type": "object", "required": ["root", "files"], "additionalProperties": false,
+    "properties": {"root": {"type": "string", "minLength": 1}, "files": {"type": "array", "items": {"type": "string", "minLength": 1}}}},
+  "output_schema": {"type": "object"}
+}

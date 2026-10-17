@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+.jumpai/
+/benchmarks/results/
+/benchmarks/agent-results/
+
+# Keep local icon explorations out of distribution; the approved icon lives in the skill.
+/assets/jump-ai-icon-v*.png
+/assets/jump-ai-icon-v*.prompt.txt

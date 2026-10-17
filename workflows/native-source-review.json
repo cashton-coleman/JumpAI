@@ -1,0 +1,20 @@
+{
+  "name": "repo.native-review", "version": "1.0.0", "kind": "workflow",
+  "purpose": "Chain native source inventory, textual audit, recorded test summary and report assembly",
+  "input_schema": {"type": "object", "required": ["root", "files", "outcomes_path"], "additionalProperties": false,
+    "properties": {"root": {"type": "string", "minLength": 1}, "files": {"type": "array", "items": {"type": "string", "minLength": 1}},
+      "outcomes_path": {"type": "string", "minLength": 1}}},
+  "output_schema": {"type": "object"},
+  "steps": [
+    {"name": "inventory", "target": "repo.source-inventory@1.0.0",
+      "bindings": {"root": {"input": "/root"}, "files": {"input": "/files"}}},
+    {"name": "audit", "target": "repo.source-audit@1.0.0",
+      "bindings": {"root": {"input": "/root"}, "files": {"input": "/files"}}},
+    {"name": "tests", "target": "tests.native-summary@1.0.0",
+      "bindings": {"path": {"input": "/outcomes_path"}}},
+    {"name": "report", "target": "repo.review-report@1.0.0",
+      "bindings": {"inventory": {"step": "inventory", "pointer": ""}, "audit": {"step": "audit", "pointer": ""},
+        "tests": {"step": "tests", "pointer": ""}}}
+  ],
+  "output": {"step": "report", "pointer": ""}
+}

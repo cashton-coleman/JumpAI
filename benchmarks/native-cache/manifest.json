@@ -1,0 +1,16 @@
+{
+  "name": "bench.native-cache",
+  "version": "1.0.0",
+  "purpose": "Measure foreground compilation versus background native binary reuse",
+  "runtime": "python",
+  "entrypoint": "run.py",
+  "files": ["run.py"],
+  "timeout_seconds": 90,
+  "input_schema": {
+    "type": "object",
+    "required": ["root", "library"],
+    "properties": {"root": {"type": "string"}, "library": {"type": "string"}},
+    "additionalProperties": false
+  },
+  "output_schema": {"type": "object"}
+}

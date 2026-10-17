@@ -1,0 +1,23 @@
+[
+  {
+    "input": {
+      "path": "examples/measurements.json"
+    },
+    "output": {
+      "records": [
+        {
+          "duration_ms": 10,
+          "label": "a"
+        },
+        {
+          "duration_ms": 20,
+          "label": "b"
+        },
+        {
+          "duration_ms": 30,
+          "label": "c"
+        }
+      ]
+    }
+  }
+]

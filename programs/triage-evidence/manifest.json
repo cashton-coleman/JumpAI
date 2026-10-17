@@ -1,0 +1,43 @@
+{
+  "name": "triage.collect-evidence",
+  "version": "1.3.1",
+  "kind": "program",
+  "runtime": "python",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py",
+    "evidence.py"
+  ],
+  "purpose": "Collect complete verbatim failure evidence with exact source provenance, relevant frames, and explicit whole-block omissions",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "root": {
+        "type": "string",
+        "minLength": 1
+      },
+      "path": {
+        "type": "string",
+        "minLength": 1
+      },
+      "checks": {
+        "type": "object"
+      },
+      "max_bytes": {
+        "type": "integer",
+        "minimum": 1024,
+        "maximum": 3900
+      }
+    },
+    "required": [
+      "root",
+      "path",
+      "checks"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object"
+  },
+  "timeout_seconds": 40
+}

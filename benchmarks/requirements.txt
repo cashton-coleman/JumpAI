@@ -1,0 +1,2 @@
+# Benchmark-only token counting; JumpAI itself has no runtime dependencies.
+tiktoken==0.14.0

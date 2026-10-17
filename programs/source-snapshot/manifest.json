@@ -1,0 +1,55 @@
+{
+  "name": "dev.source-snapshot",
+  "version": "1.1.1",
+  "purpose": "Read hashed source snapshots and complete qualified Python definitions for guarded edits and evidence preparation",
+  "runtime": "python",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "root": {
+        "type": "string",
+        "minLength": 1
+      },
+      "files": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "include_text": {
+              "type": "boolean"
+            },
+            "symbols": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "root",
+      "files"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object"
+  },
+  "timeout_seconds": 30
+}

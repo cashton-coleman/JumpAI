@@ -1,0 +1,86 @@
+{
+  "outputs_match": true,
+  "normalized_fields": [
+    "ordinary.inventory.total_bytes -> bytes",
+    "ordinary.inventory.total_lines -> lines"
+  ],
+  "inputs_unchanged": true,
+  "native_steps_ready": 4,
+  "files": 19,
+  "source_bytes": 198517,
+  "recorded_tests": 27,
+  "agents": {
+    "recipe": {
+      "wall_seconds": 10.706,
+      "model_exchanges": 2,
+      "tool_calls": 1,
+      "model": "gpt-6-astra",
+      "usage": {
+        "input_tokens": 68906,
+        "cached_input_tokens": 65408,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 234,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 69140
+      }
+    },
+    "ordinary": {
+      "wall_seconds": 22.6,
+      "model_exchanges": 3,
+      "tool_calls": 2,
+      "model": "gpt-6-astra",
+      "usage": {
+        "input_tokens": 106431,
+        "cached_input_tokens": 102912,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 874,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 107305
+      }
+    }
+  },
+  "workflow_runs": [
+    [
+      "repo.native-review@1.0.0",
+      null,
+      75.154,
+      1
+    ],
+    [
+      "repo.source-inventory@1.0.0",
+      1,
+      21.177,
+      1
+    ],
+    [
+      "repo.source-audit@1.0.0",
+      1,
+      18.377,
+      1
+    ],
+    [
+      "tests.native-summary@1.0.0",
+      1,
+      16.203,
+      1
+    ],
+    [
+      "repo.review-report@1.0.0",
+      1,
+      18.254,
+      1
+    ]
+  ],
+  "setup": {
+    "seconds": 3.1122832084074616,
+    "files": 19,
+    "workflow": "repo.native-review@1.0.0",
+    "recipe": "source-review"
+  },
+  "limits": "One fresh agent per condition; warm recipe reuse excludes one-time authoring, compilation, preparation and parent audit costs. Ordinary control may choose its language and batch work.",
+  "savings_percent": {
+    "wall_time": 52.6283185840708,
+    "total_tokens": 35.56684217883603,
+    "output_tokens": 73.22654462242562
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "bench.prepare-native-workflow", "version": "1.0.2", "runtime": "python",
+  "entrypoint": "prepare_native_workflow.py", "files": ["prepare_native_workflow.py"],
+  "purpose": "Prepare matched real-input agents for a warm all-native recipe versus ordinary code writing",
+  "timeout_seconds": 120,
+  "input_schema": {"type": "object", "required": ["root", "library"], "additionalProperties": false,
+    "properties": {"root": {"type": "string"}, "library": {"type": "string"}}},
+  "output_schema": {"type": "object"}
+}

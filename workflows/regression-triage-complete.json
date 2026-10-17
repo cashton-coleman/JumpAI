@@ -1,0 +1,199 @@
+{
+  "name": "repo.regression-triage",
+  "version": "1.4.0",
+  "kind": "workflow",
+  "purpose": "Diagnose from complete versioned evidence, pause for a model-selected repair, apply with a source digest guard, and recheck",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "root": {
+        "type": "string",
+        "minLength": 1
+      },
+      "tests": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "source_path": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "root",
+      "tests",
+      "source_path"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object"
+  },
+  "steps": [
+    {
+      "name": "initial",
+      "target": "triage.run-checks@1.0.1",
+      "bindings": {
+        "root": {
+          "input": "/root"
+        },
+        "tests": {
+          "input": "/tests"
+        }
+      }
+    },
+    {
+      "name": "evidence",
+      "target": "triage.collect-evidence@1.3.1",
+      "when": {
+        "value": {
+          "step": "initial",
+          "pointer": "/ok"
+        },
+        "equals": false
+      },
+      "bindings": {
+        "root": {
+          "input": "/root"
+        },
+        "path": {
+          "input": "/source_path"
+        },
+        "checks": {
+          "step": "initial",
+          "pointer": ""
+        }
+      }
+    },
+    {
+      "name": "repair",
+      "when": {
+        "value": {
+          "step": "initial",
+          "pointer": "/ok"
+        },
+        "equals": false
+      },
+      "decision": {
+        "prompt": "Initial tests have already run; their counts and failure evidence are below. Supply a minimal exact replacement using the complete verbatim definitions. Do not repeat these reads or checks. If a specific omitted fact prevents diagnosis, identify it rather than guessing. Resume checks the source SHA256, applies exactly one replacement, runs final tests once, and returns the report. No repair is precomputed.",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "old": {
+              "type": "string",
+              "minLength": 1
+            },
+            "new": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "old",
+            "new"
+          ],
+          "additionalProperties": false
+        },
+        "context": {
+          "initial_tests": {"step": "initial", "pointer": "/tests"},
+          "initial_passed": {"step": "initial", "pointer": "/passed"},
+          "initial_failures": {"step": "initial", "pointer": "/failures"},
+          "initial_errors": {"step": "initial", "pointer": "/errors"},
+          "evidence": {
+            "step": "evidence",
+            "pointer": ""
+          }
+        }
+      }
+    },
+    {
+      "name": "apply",
+      "target": "triage.apply-replacement@1.0.1",
+      "when": {
+        "value": {
+          "step": "initial",
+          "pointer": "/ok"
+        },
+        "equals": false
+      },
+      "otherwise": {
+        "value": {
+          "applied": false,
+          "changed_files": []
+        }
+      },
+      "bindings": {
+        "root": {
+          "input": "/root"
+        },
+        "patch": {
+          "step": "repair",
+          "pointer": ""
+        },
+        "allowed_path": {
+          "input": "/source_path"
+        },
+        "expected_sha256": {
+          "step": "evidence",
+          "pointer": "/sha256"
+        }
+      }
+    },
+    {
+      "name": "recheck",
+      "target": "triage.run-checks@1.0.1",
+      "when": {
+        "value": {
+          "step": "initial",
+          "pointer": "/ok"
+        },
+        "equals": false
+      },
+      "otherwise": {
+        "step": "initial",
+        "pointer": ""
+      },
+      "bindings": {
+        "root": {
+          "input": "/root"
+        },
+        "tests": {
+          "input": "/tests"
+        }
+      }
+    },
+    {
+      "name": "report",
+      "target": "triage.report@1.0.1",
+      "bindings": {
+        "initial": {
+          "step": "initial",
+          "pointer": ""
+        },
+        "final": {
+          "step": "recheck",
+          "pointer": ""
+        },
+        "patch": {
+          "step": "apply",
+          "pointer": ""
+        }
+      }
+    }
+  ],
+  "output": {
+    "step": "report",
+    "pointer": ""
+  },
+  "summary": {
+    "step": "report",
+    "pointer": ""
+  }
+}

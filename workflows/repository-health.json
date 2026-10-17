@@ -1,0 +1,128 @@
+{
+  "name": "repo.health",
+  "version": "1.1.0",
+  "kind": "workflow",
+  "purpose": "Chain Python test inventory, local Markdown link audit and recorded test summary into a repository health report",
+  "use_cases": [
+    "Review repository tests and documentation in one invocation"
+  ],
+  "tags": [
+    "repository",
+    "health",
+    "report"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "root": {
+        "type": "string",
+        "minLength": 1
+      },
+      "test_files": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "markdown_files": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "outcomes_path": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "root",
+      "test_files",
+      "markdown_files",
+      "outcomes_path"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "inventory": {
+        "type": "object"
+      },
+      "links": {
+        "type": "object"
+      },
+      "tests": {
+        "type": "object"
+      }
+    },
+    "required": [
+      "inventory",
+      "links",
+      "tests"
+    ],
+    "additionalProperties": false
+  },
+  "steps": [
+    {
+      "name": "inventory",
+      "target": "python.test-inventory@1.0.1",
+      "bindings": {
+        "root": {
+          "input": "/root"
+        },
+        "files": {
+          "input": "/test_files"
+        }
+      }
+    },
+    {
+      "name": "links",
+      "target": "docs.local-links@1.0.1",
+      "bindings": {
+        "root": {
+          "input": "/root"
+        },
+        "files": {
+          "input": "/markdown_files"
+        }
+      }
+    },
+    {
+      "name": "tests",
+      "target": "tests.summarize-run@1.0.1",
+      "bindings": {
+        "path": {
+          "input": "/outcomes_path"
+        },
+        "top": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "name": "report",
+      "target": "reports.combine@1.1.0",
+      "bindings": {
+        "inventory": {
+          "step": "inventory",
+          "pointer": ""
+        },
+        "links": {
+          "step": "links",
+          "pointer": ""
+        },
+        "tests": {
+          "step": "tests",
+          "pointer": ""
+        }
+      }
+    }
+  ],
+  "output": {
+    "step": "report",
+    "pointer": ""
+  }
+}

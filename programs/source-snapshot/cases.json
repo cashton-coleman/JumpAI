@@ -1,0 +1,32 @@
+[
+  {
+    "input": {
+      "root": ".",
+      "files": [
+        {
+          "path": "programs/source-snapshot/fixture.py",
+          "symbols": [
+            "Example.normalize"
+          ]
+        }
+      ]
+    },
+    "output": {
+      "files": [
+        {
+          "path": "programs/source-snapshot/fixture.py",
+          "sha256": "b520734dfea0341bdaf63da0b8a45766971871b34d5847da36e88b7e60b5a64e",
+          "bytes": 88,
+          "definitions": [
+            {
+              "symbol": "Example.normalize",
+              "line": 2,
+              "source": "@staticmethod\n    def normalize(value):\n        return value.strip()",
+              "complete": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

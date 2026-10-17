@@ -1,0 +1,50 @@
+{
+  "name": "json.load",
+  "version": "1.0.1",
+  "kind": "program",
+  "purpose": "Load a JSON array of records from a file",
+  "use_cases": [
+    "Read benchmark results",
+    "Load structured records"
+  ],
+  "tags": [
+    "json",
+    "file",
+    "records"
+  ],
+  "runtime": "python",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py"
+  ],
+  "arguments": [],
+  "timeout_seconds": 10,
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "path"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "records": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    },
+    "required": [
+      "records"
+    ],
+    "additionalProperties": false
+  }
+}

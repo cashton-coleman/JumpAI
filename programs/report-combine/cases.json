@@ -1,0 +1,30 @@
+[
+  {
+    "input": {
+      "inventory": {
+        "tests": 3
+      },
+      "links": {
+        "broken": []
+      },
+      "tests": {
+        "passed": 3
+      }
+    },
+    "output": {
+      "inventory": {
+        "tests": 3
+      },
+      "links": {
+        "broken": []
+      },
+      "tests": {
+        "passed": 3
+      }
+    }
+  },
+  {
+    "input": {"inventory": {}, "links": {"broken": ["docs/日本語.md", "quote\"file"]}, "tests": {"count": 9007199254740993, "failed": false, "detail": null}},
+    "output": {"inventory": {}, "links": {"broken": ["docs/日本語.md", "quote\"file"]}, "tests": {"count": 9007199254740993, "failed": false, "detail": null}}
+  }
+]

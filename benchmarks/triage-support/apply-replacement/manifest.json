@@ -1,0 +1,61 @@
+{
+  "name": "triage.apply-replacement",
+  "version": "1.0.1",
+  "kind": "program",
+  "runtime": "python",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py"
+  ],
+  "purpose": "Apply one exact model-selected replacement guarded by workspace path and source digest",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "root": {
+        "type": "string",
+        "minLength": 1
+      },
+      "patch": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "old": {
+            "type": "string",
+            "minLength": 1
+          },
+          "new": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "old",
+          "new"
+        ],
+        "additionalProperties": false
+      },
+      "allowed_path": {
+        "type": "string",
+        "minLength": 1
+      },
+      "expected_sha256": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "root",
+      "patch",
+      "allowed_path",
+      "expected_sha256"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object"
+  },
+  "timeout_seconds": 40
+}

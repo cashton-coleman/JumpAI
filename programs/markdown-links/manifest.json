@@ -1,0 +1,44 @@
+{
+  "name": "docs.local-links",
+  "version": "1.0.1",
+  "kind": "program",
+  "purpose": "Find broken inline local file links in Markdown, excluding fenced code and external URLs",
+  "use_cases": [
+    "Check repository documentation links; does not validate anchors, reference-style links or full Markdown syntax"
+  ],
+  "tags": [
+    "docs",
+    "local-links"
+  ],
+  "runtime": "python",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py"
+  ],
+  "timeout_seconds": 30,
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "root": {
+        "type": "string",
+        "minLength": 1
+      },
+      "files": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1
+      }
+    },
+    "required": [
+      "root",
+      "files"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object"
+  }
+}

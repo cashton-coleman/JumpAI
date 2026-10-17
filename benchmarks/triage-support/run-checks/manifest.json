@@ -1,0 +1,36 @@
+{
+  "name": "triage.run-checks",
+  "version": "1.0.1",
+  "kind": "program",
+  "runtime": "python",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py"
+  ],
+  "purpose": "Run selected unittest tests and return bounded failure evidence",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "root": {
+        "type": "string",
+        "minLength": 1
+      },
+      "tests": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "required": [
+      "root",
+      "tests"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object"
+  },
+  "timeout_seconds": 40
+}

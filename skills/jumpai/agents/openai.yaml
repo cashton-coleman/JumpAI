@@ -1,0 +1,8 @@
+interface:
+  display_name: "JumpAI"
+  short_description: "Reuse cached programs and workflows across coding tasks"
+  icon_small: "./assets/jump-ai-icon.png"
+  icon_large: "./assets/jump-ai-icon.png"
+  default_prompt: "Use $jumpai to reuse suitable programs and workflows for this task."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,10 @@
+{
+  "jumpai/catalog.py": "6aa7fae5b59f3717286f247ffdcab8b218fc09a530feb5919dd0558b6fbdc3a3",
+  "jumpai/runner.py": "69ff1664645e24e3c75b1c61e195814dbcf805074d62c52b1a7b1c4321e8647e",
+  "jumpai/__init__.py": "f67b26b2cc58c9ccdef47988efc9eceba380bea2e91548c976e7c2a81d4b2f00",
+  "jumpai/cli.py": "5346ed26d7dadd8ac0678db7745450af86757f260d2819038cb59641bd1e7013",
+  "jumpai/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+  "jumpai/schema.py": "0f893deeddf99c7c6bd65124063a3ef63424a4c8886cb951f66d1f91655b7688",
+  "tests/test_recipes.py": "3fbfdcfb19d5117244d1d0129c070f82f0d1fb814759528d0e33f5a5177f0676",
+  "tests/test_jumpai.py": "151269bf52c5083f275565e1a7791e58e9ba1227c33bd70070e463b00a0b3eb0"
+}

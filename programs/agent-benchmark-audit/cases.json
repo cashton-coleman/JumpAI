@@ -1,0 +1,40 @@
+[
+  {
+    "input": {
+      "output_dir": "/private/tmp/jumpai-agent-audit-fixture/output",
+      "sessions_dir": "/private/tmp/jumpai-agent-audit-fixture/sessions",
+      "parent_thread_id": "fixture-parent",
+      "conditions": [
+        "sample"
+      ]
+    },
+    "output": {
+      "ready": true,
+      "completed": 1,
+      "expected": 1,
+      "all_passed": true,
+      "summary": {
+        "sample": {
+          "completed": 1,
+          "correct": 1,
+          "wall_seconds": 1.0,
+          "model_tool_calls": 0,
+          "model_exchanges": 1,
+          "usage": {
+            "input_tokens": 10,
+            "cached_input_tokens": 8,
+            "output_tokens": 2,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 12,
+            "uncached_input_tokens": 2
+          }
+        }
+      },
+      "artifacts": {
+        "runs": "/private/tmp/jumpai-agent-audit-fixture/output/runs.json",
+        "audit": "/private/tmp/jumpai-agent-audit-fixture/output/audit.json",
+        "summary": "/private/tmp/jumpai-agent-audit-fixture/output/summary.json"
+      }
+    }
+  }
+]

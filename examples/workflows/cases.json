@@ -1,0 +1,15 @@
+[
+  {
+    "input": {
+      "path": "examples/measurements.json",
+      "field": "duration_ms"
+    },
+    "output": {
+      "count": 3,
+      "min": 10,
+      "max": 30,
+      "mean": 20,
+      "median": 20
+    }
+  }
+]

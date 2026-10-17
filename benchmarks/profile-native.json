@@ -1,0 +1,16 @@
+{
+  "name": "bench.profile-native",
+  "version": "1.1.0",
+  "purpose": "Separate cached C++ launch, toolchain checks, dependency validation, and full runner latency",
+  "runtime": "python",
+  "entrypoint": "profile_native.py",
+  "files": ["profile_native.py"],
+  "timeout_seconds": 60,
+  "input_schema": {
+    "type": "object",
+    "required": ["root", "catalog", "payload"],
+    "properties": {"root": {"type": "string"}, "catalog": {"type": "string"}, "payload": {"type": "string"}},
+    "additionalProperties": false
+  },
+  "output_schema": {"type": "object"}
+}

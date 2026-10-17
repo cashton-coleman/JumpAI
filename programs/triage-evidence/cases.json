@@ -1,0 +1,76 @@
+[
+  {
+    "input": {
+      "root": "/private/tmp/jumpai-evidence-verification",
+      "path": "sample.py",
+      "checks": {
+        "evidence": []
+      }
+    },
+    "output": {
+      "path": "sample.py",
+      "sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+      "evidence_ref": "/private/tmp/jumpai-evidence-verification/.triage-evidence.json",
+      "excerpt_policy": "Verbatim complete definitions, including decorators; enclosing class/module context is not included.",
+      "failures": [],
+      "test_source": [],
+      "source": [],
+      "omitted": {
+        "failures": [],
+        "tests": [],
+        "symbols": []
+      }
+    }
+  },
+  {
+    "input": {
+      "root": "/private/tmp/jumpai-evidence-verification",
+      "path": "sample.py",
+      "checks": {
+        "evidence": [
+          {
+            "test": "test_sample.Example.test_value",
+            "traceback": "Traceback:\n  File \"/private/tmp/jumpai-evidence-verification/sample.py\", line 2, in normalize\nAssertionError: mismatched"
+          }
+        ]
+      }
+    },
+    "output": {
+      "path": "sample.py",
+      "sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+      "evidence_ref": "/private/tmp/jumpai-evidence-verification/.triage-evidence.json",
+      "excerpt_policy": "Verbatim complete definitions, including decorators; enclosing class/module context is not included.",
+      "failures": [
+        {
+          "test": "test_sample.Example.test_value",
+          "error": "AssertionError: mismatched",
+          "frames": [
+            {
+              "path": "sample.py",
+              "line": 2,
+              "function": "normalize"
+            }
+          ]
+        }
+      ],
+      "test_source": [
+        {
+          "test": "test_sample.Example.test_value",
+          "source": "def test_value(self):\n        self.assertEqual(normalize(\" A \"), \"a\")"
+        }
+      ],
+      "source": [
+        {
+          "symbol": "normalize",
+          "line": 1,
+          "source": "def normalize(value):\n    return value.strip()"
+        }
+      ],
+      "omitted": {
+        "failures": [],
+        "tests": [],
+        "symbols": []
+      }
+    }
+  }
+]

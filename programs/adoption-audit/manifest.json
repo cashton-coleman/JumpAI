@@ -1,0 +1,46 @@
+{
+  "name": "bench.adoption-audit",
+  "version": "1.0.1",
+  "runtime": "python",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py"
+  ],
+  "purpose": "Inspect automatic tool adoption and delegation using native agent trees, observable command traces and actual token counters",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "output_dir": {
+        "type": "string",
+        "minLength": 1
+      },
+      "sessions_dir": {
+        "type": "string",
+        "minLength": 1
+      },
+      "parent_thread_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "root_agent_paths": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "required": [
+      "output_dir",
+      "sessions_dir",
+      "parent_thread_id",
+      "root_agent_paths"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object"
+  },
+  "timeout_seconds": 60
+}

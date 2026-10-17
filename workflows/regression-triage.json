@@ -1,0 +1,195 @@
+{
+  "name": "repo.regression-triage",
+  "version": "1.0.1",
+  "kind": "workflow",
+  "purpose": "Run checks, collect evidence on failure, pause for a model-selected patch, apply once, rerun and report",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "root": {
+        "type": "string",
+        "minLength": 1
+      },
+      "tests": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "source_path": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required": [
+      "root",
+      "tests",
+      "source_path"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object"
+  },
+  "steps": [
+    {
+      "name": "initial",
+      "target": "triage.run-checks@1.0.1",
+      "bindings": {
+        "root": {
+          "input": "/root"
+        },
+        "tests": {
+          "input": "/tests"
+        }
+      }
+    },
+    {
+      "name": "evidence",
+      "target": "triage.collect-evidence@1.0.1",
+      "when": {
+        "value": {
+          "step": "initial",
+          "pointer": "/ok"
+        },
+        "equals": false
+      },
+      "bindings": {
+        "root": {
+          "input": "/root"
+        },
+        "path": {
+          "input": "/source_path"
+        },
+        "checks": {
+          "step": "initial",
+          "pointer": ""
+        }
+      }
+    },
+    {
+      "name": "repair",
+      "when": {
+        "value": {
+          "step": "initial",
+          "pointer": "/ok"
+        },
+        "equals": false
+      },
+      "decision": {
+        "prompt": "Diagnose the regression from these tests and source excerpts. Supply a minimal exact replacement in the allowed source file; the workflow contains no repair or diagnosis.",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "old": {
+              "type": "string",
+              "minLength": 1
+            },
+            "new": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "old",
+            "new"
+          ],
+          "additionalProperties": false
+        },
+        "context": {
+          "evidence": {
+            "step": "evidence",
+            "pointer": ""
+          }
+        }
+      }
+    },
+    {
+      "name": "apply",
+      "target": "triage.apply-replacement@1.0.1",
+      "when": {
+        "value": {
+          "step": "initial",
+          "pointer": "/ok"
+        },
+        "equals": false
+      },
+      "otherwise": {
+        "value": {
+          "applied": false,
+          "changed_files": []
+        }
+      },
+      "bindings": {
+        "root": {
+          "input": "/root"
+        },
+        "patch": {
+          "step": "repair",
+          "pointer": ""
+        },
+        "allowed_path": {
+          "input": "/source_path"
+        },
+        "expected_sha256": {
+          "step": "evidence",
+          "pointer": "/sha256"
+        }
+      }
+    },
+    {
+      "name": "recheck",
+      "target": "triage.run-checks@1.0.1",
+      "when": {
+        "value": {
+          "step": "initial",
+          "pointer": "/ok"
+        },
+        "equals": false
+      },
+      "otherwise": {
+        "step": "initial",
+        "pointer": ""
+      },
+      "bindings": {
+        "root": {
+          "input": "/root"
+        },
+        "tests": {
+          "input": "/tests"
+        }
+      }
+    },
+    {
+      "name": "report",
+      "target": "triage.report@1.0.1",
+      "bindings": {
+        "initial": {
+          "step": "initial",
+          "pointer": ""
+        },
+        "final": {
+          "step": "recheck",
+          "pointer": ""
+        },
+        "patch": {
+          "step": "apply",
+          "pointer": ""
+        }
+      }
+    }
+  ],
+  "output": {
+    "step": "report",
+    "pointer": ""
+  },
+  "summary": {
+    "step": "report",
+    "pointer": ""
+  }
+}

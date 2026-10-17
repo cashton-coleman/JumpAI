@@ -1,0 +1,137 @@
+[
+  {
+    "test": "test_jumpai.CatalogTests.test_bad_output_and_nonzero_exit_are_failures",
+    "status": "passed",
+    "duration_ms": 101.693
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_cache_hit_skips_search_and_survives_reopen",
+    "status": "passed",
+    "duration_ms": 33.85
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_cache_is_scoped_and_invalidated_on_registration",
+    "status": "passed",
+    "duration_ms": 32.755
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_cache_miss_never_selects_search_result",
+    "status": "passed",
+    "duration_ms": 30.694
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_catalog_change_during_run_prevents_stale_binding",
+    "status": "passed",
+    "duration_ms": 33.847
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_cli_executes_remembered_query_and_does_not_execute_miss",
+    "status": "passed",
+    "duration_ms": 91.421
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_composition_passes_outputs_and_returns_only_final_result",
+    "status": "passed",
+    "duration_ms": 228.248
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_disable_prevents_cached_and_direct_execution",
+    "status": "passed",
+    "duration_ms": 33.803
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_disabled_dependency_invalidates_workflow",
+    "status": "passed",
+    "duration_ms": 169.384
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_experimental_cannot_be_cached_or_run_by_default",
+    "status": "passed",
+    "duration_ms": 30.218
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_failed_execution_is_not_remembered",
+    "status": "passed",
+    "duration_ms": 33.792
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_failed_step_stops_workflow",
+    "status": "passed",
+    "duration_ms": 209.933
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_failed_verification_revokes_validation_and_cache",
+    "status": "passed",
+    "duration_ms": 61.761
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_immutable_version_and_snapshot",
+    "status": "passed",
+    "duration_ms": 33.616
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_invalid_input_does_not_start_program",
+    "status": "passed",
+    "duration_ms": 4.535
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_registration_rejects_unsupported_schema_and_path_escape",
+    "status": "passed",
+    "duration_ms": 5.089
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_runner_logs_do_not_store_inputs_outputs_or_stderr",
+    "status": "passed",
+    "duration_ms": 42.149
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_search_quotes_are_data_and_results_are_bounded",
+    "status": "passed",
+    "duration_ms": 4.637
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_tampered_snapshot_is_rejected",
+    "status": "passed",
+    "duration_ms": 6.195
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_timeout_and_output_limit",
+    "status": "passed",
+    "duration_ms": 90.34
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_unregistered_bundle_file_is_rejected",
+    "status": "passed",
+    "duration_ms": 7.476
+  },
+  {
+    "test": "test_jumpai.CatalogTests.test_workflow_rejects_forward_reference",
+    "status": "passed",
+    "duration_ms": 171.025
+  },
+  {
+    "test": "test_jumpai.ContractsTests.test_boolean_does_not_satisfy_numeric_schema",
+    "status": "passed",
+    "duration_ms": 0.026
+  },
+  {
+    "test": "test_jumpai.ContractsTests.test_cli_process_emits_json_error",
+    "status": "passed",
+    "duration_ms": 46.939
+  },
+  {
+    "test": "test_jumpai.ContractsTests.test_pointer_handles_escaping_and_array_bounds",
+    "status": "passed",
+    "duration_ms": 0.158
+  },
+  {
+    "test": "test_jumpai.ContractsTests.test_schema_rejects_silent_ignored_constraints",
+    "status": "passed",
+    "duration_ms": 0.068
+  },
+  {
+    "test": "test_jumpai.ContractsTests.test_strict_json",
+    "status": "passed",
+    "duration_ms": 0.075
+  }
+]

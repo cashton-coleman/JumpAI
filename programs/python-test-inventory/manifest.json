@@ -1,0 +1,44 @@
+{
+  "name": "python.test-inventory",
+  "version": "1.0.1",
+  "kind": "program",
+  "purpose": "Inventory Python test methods and functions without executing them",
+  "use_cases": [
+    "Count tests by file and class before a review"
+  ],
+  "tags": [
+    "python",
+    "test-inventory"
+  ],
+  "runtime": "python",
+  "entrypoint": "main.py",
+  "files": [
+    "main.py"
+  ],
+  "timeout_seconds": 30,
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "root": {
+        "type": "string",
+        "minLength": 1
+      },
+      "files": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1
+      }
+    },
+    "required": [
+      "root",
+      "files"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object"
+  }
+}

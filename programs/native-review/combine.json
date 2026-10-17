@@ -1,0 +1,9 @@
+{
+  "name": "repo.review-report", "version": "1.0.0", "runtime": "cpp",
+  "purpose": "Assemble source inventory, textual audit and recorded test results into one report",
+  "entrypoint": "main.cpp", "python_fallback": "main.py", "arguments": ["combine"],
+  "files": ["main.cpp", "main.py", "json.hpp", "LICENSE.MIT"],
+  "input_schema": {"type": "object", "required": ["inventory", "audit", "tests"], "additionalProperties": false,
+    "properties": {"inventory": {"type": "object"}, "audit": {"type": "object"}, "tests": {"type": "object"}}},
+  "output_schema": {"type": "object"}
+}

@@ -1,0 +1,53 @@
+{
+  "name": "reports.combine",
+  "version": "1.1.0",
+  "purpose": "Combine inventory, documentation link audit and test outcome summary into one report",
+  "kind": "program",
+  "runtime": "cpp",
+  "entrypoint": "main.cpp",
+  "python_fallback": "main.py",
+  "files": [
+    "main.py",
+    "main.cpp"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "inventory": {
+        "type": "object"
+      },
+      "links": {
+        "type": "object"
+      },
+      "tests": {
+        "type": "object"
+      }
+    },
+    "required": [
+      "inventory",
+      "links",
+      "tests"
+    ],
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "inventory": {
+        "type": "object"
+      },
+      "links": {
+        "type": "object"
+      },
+      "tests": {
+        "type": "object"
+      }
+    },
+    "required": [
+      "inventory",
+      "links",
+      "tests"
+    ],
+    "additionalProperties": false
+  }
+}
