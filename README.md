@@ -1,6 +1,6 @@
-# Jump AI
-
 <img src="skills/jumpai/assets/jump-ai-icon.png" alt="Jump AI icon: blue steps and a golden diamond" width="160" height="160">
+
+# Jump AI
 
 **Give your coding agent a memory for useful tools—not just conversations.**
 
